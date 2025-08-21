@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Resume - Thota Mahesh</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="resume-container">
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <img src="C:\Users\Mahesh Royal\Downloads\mahesh.jpg" alt="Profile Picture">
+    <h2>THOTA MAHESH</h2>
+    <p>Madanapalle, 517325</p>
+    <p>9392328160 / 900302541</p>
+    <p> 236913816@mits.ac.in</p>
+    <p> maheshroyal7479@gmail.com</p>
+    <a href="https://www.linkedin.com/in/mahesh-royal-a5143b428" target="_blank">LinkedIn</a>
+
+    <div class="menu">
+      <button onclick="showSection('summary')">Professional Summary</button>
+      <button onclick="showSection('skills')">Technical Competencies</button>
+      <button onclick="showSection('interpersonal')">Interpersonal Skills</button>
+      <button onclick="showSection('hobbies')">Interests & Hobbies</button>
+      <button onclick="showSection('languages')">Languages Known</button>
+      <button onclick="showSection('personal')">Personal Details</button>
+      <button onclick="showSection('education')">Education</button>
+      <button onclick="showSection('projects')">Training & Projects</button>
+      <button onclick="showSection('achievements')">Academic Achievements</button>
+      <button onclick="showSection('certifications')">Certifications</button>
+      <button onclick="showSection('activities')">Extra & Co-curricular</button>
+    </div>
+  </div>
+  <div class="right-panel">
+    <div id="summary" class="content-section">
+      <h3>Professional Summary</h3>
+      <p>Highly motivated and details-oriented AI enthusiast with a passion for developing innovative AI tools and solutions, seeking a challenging role in AI research and development.</p>
+    </div>
+
+    <div id="skills" class="content-section">
+      <h3>Technical Competencies</h3>
+      <ul>
+        <li>OS: Windows</li>
+        <li>Languages: C, Python</li>
+        <li>Databases: MySQL</li>
+        <li>Other Interests: Software Engineering, Operating System</li>
+      </ul>
+    </div>
+
+    <div id="interpersonal" class="content-section">
+      <h3>Interpersonal Skills</h3>
+      <p>Communication | Active Listening | Positive Attitude</p>
+    </div>
+
+    <div id="hobbies" class="content-section">
+      <h3>Interests & Hobbies</h3>
+      <p>Reading | Writing | Gaming</p>
+    </div>
+
+    <div id="languages" class="content-section">
+      <h3>Languages Known</h3>
+      <p>English | Telugu</p>
+    </div>
+
+    <div id="personal" class="content-section">
+      <h3>Personal Details</h3>
+      <p>Mother’s Name: Bhagyamma<br>
+         Father’s Name: Sudhakar<br>
+         DOB: 17th August 2005</p>
+    </div>
+
+    <div id="education" class="content-section">
+      <h3>Education</h3>
+      <p><strong>B.Tech in Computer Science Engineering</strong><br>
+         Madanapalle Institute of Technology & Science, Andhra Pradesh (2020-2024)<br>
+         Score: 7.73 CGPA</p>
+      <p><strong>Intermediate (BEAP)</strong>, Narayana Jr College, Tirupati (2021-2023) – 92.8%</p>
+      <p><strong>SSC</strong>, Chaitanya High School, Andhra Pradesh (2020-2021) – 83.7%</p>
+    </div>
+
+    <div id="projects" class="content-section">
+      <h3>Training & Projects</h3>
+      <p><strong>Smart India Hackathon</strong><br>
+         Duration: 1 week<br>
+         Appeared in idea submission stage at SIH program</p>
+    </div>
+
+    <div id="achievements" class="content-section">
+      <h3>Academic Achievements</h3>
+      <ul>
+        <li>2K cash prize in intermediate for Mathematics II-B</li>
+        <li>Secured 2★ Badge at HackerRank in C and Problem Solving</li>
+      </ul>
+    </div>
+
+    <div id="certifications" class="content-section">
+      <h3>Certifications</h3>
+      <ul>
+        <li>Python (Udemy)</li>
+        <li>Effective Writing (NPTEL)</li>
+        <li>Swarn Andhra (Govt. of Andhra Pradesh)</li>
+      </ul>
+    </div>
+    <div id="activities" class="content-section">
+      <h3>Extra & Co-curricular Activities</h3>
+      <ul>
+        <li>Member in AI Community of MITS</li>
+        <li>Member in MLR Club of MITS</li>
+        <li>Received participation certificate in Brainstorming conducted by MITS</li>
+        <li>Runner in Treasure Hunt conducted by MITS</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+</body>
+</html>
