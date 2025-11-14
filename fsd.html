@@ -1,0 +1,404 @@
+Experiment a: Set up a basic React project using Create React App
+This experiment helps students set up their first React project and understand how React renders components.
+Aim:
+To create and run a basic React project using Create React App.
+Steps:
+1.	Open terminal/command prompt and navigate to desired folder (e.g., Desktop).
+2.	Run: npx create-react-app react-lab
+3.	Navigate to project folder: cd react-lab
+4.	Start project: npm start
+5.	Browser opens at http://localhost:3000 showing default React page.
+6.	Open project in VS Code: code .
+7.	Edit src/App.js with given code and save.
+8.	Browser auto-refreshes with updated content.
+Source Code:
+export default function App() {
+  return (
+    <div style={{padding:20}}>
+      <h1>Hello React!</h1>
+      <p>Setup successful!</p>
+    </div>
+  );
+}
+
+Result:
+Expected Output: A Webpage should display Hello React! Setup successful!
+
+
+
+
+
+Experiment b: Implement routing between pages using React Router
+React Router allows single-page applications (SPAs) to have multiple views without reloading the page.
+Aim:
+To implement client-side routing using React Router.
+Steps:
+1.	Install React Router: npm install react-router-dom
+2.	In src/index.js, wrap App with BrowserRouter.
+(Code for Wrap App: replace index.js content with below code:
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+
+reportWebVitals();
+
+3.	Create src/pages/Home.js, About.js, Contact.js with basic headings.
+Code for Home.js:
+import React from "react";
+function Home() {
+    return (
+        <div className="container">
+            <h1>Welcome to My React App</h1>
+            <p>
+                This is the Home Page. Explore React basics!
+            </p>
+        </div>
+    );
+}
+
+export default Home;
+
+	Code for About.js:
+import React from "react";
+function About() {
+    return (
+        <div className="container">
+            <h1>Welcome to About Page</h1>
+            <p>
+                This is the About Page. Explore React basics!
+            </p>
+        </div>
+    );
+}
+
+export default About;
+	Code for Contact.js:
+import React from "react";
+
+function Contact() {
+    return (
+        <div className="container">
+            <h1>Contact Us</h1>
+            <p>Email: myemail@mydomain.com</p>
+            <p>Mobile: 9191919191</p>
+            <p>You can contact us from any of above options</p>
+        </div>
+    );
+}
+
+export default Contact;
+
+4.	In src/App.js, import Routes, Route, Link from react-router-dom. (Code is below)
+5.	Add navigation links and define routes for Home, About, Contact.
+6.	Run npm start and verify navigation.
+Source Code:
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+export default function App() {
+  return (
+    <div>
+      <nav>
+        <Link to="/">Home</Link> | 
+        <Link to="/about">About</Link> | 
+        <Link to="/contact">Contact</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </div>
+  );
+}
+
+Result:
+Expected Output: The form should display webpage with Home, About, Contact menu items.
+
+
+
+
+
+
+Experiment (c): Create and Manage Form Data using React State and Hooks
+Forms are an essential part of web applications, allowing users to input and submit data. In React, forms are implemented using controlled components, where the value of each input field is managed via React state. This experiment demonstrates how to create a simple registration form that captures user input (name and email) using the useState hook and displays it using an alert message on submission.
+Aim:
+To handle form inputs and submission using React state and hooks.
+Tools Required:
+• Node.js (LTS version) – https://nodejs.org/
+• Visual Studio Code – https://code.visualstudio.com/
+• Web browser (Google Chrome recommended)
+Pre-requisites:
+Before starting this experiment, ensure that Node.js is installed and a React project is already created using the following commands:
+
+   npx create-react-app statehooks
+   cd react-lab
+   npm start
+
+The application should successfully run on http://localhost:3000 showing the default React page.
+Procedure:
+1. Open the React project folder in Visual Studio Code using the command: code .
+2. Inside the src directory, create a new folder named components.
+3. Within the components folder, create a new file named RegistrationForm.js.
+4. Import React and useState hook at the top of RegistrationForm.js using: import React, { useState } from 'react';
+5. Declare a state variable to hold the name and email values using useState.
+6. Create a function handleChange(e) that updates the state as the user types in the input fields.
+7. Create a function handleSubmit(e) that prevents page reload (using e.preventDefault()) and displays the entered data using an alert.
+8. Add input fields for name and email, bind their values to the state, and handle changes with onChange.
+9. Add a submit button to trigger the handleSubmit function.
+10. Import and render the RegistrationForm component inside App.js.
+Source Code:
+RegistrationForm.js:
+import React, { useState } from "react";
+
+export default function RegistrationForm() {
+  const [form, setForm] = useState({ name: "", email: "" });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert(`Name: ${form.name}\nEmail: ${form.email}`);
+  }
+
+  return (
+    <div style={{ padding: 20 }}>
+      <h2>Registration Form</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:{" "}
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Enter your name"
+            required
+          />
+        </label>
+        <br /><br />
+        <label>
+          Email:{" "}
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Enter your email"
+            required
+          />
+        </label>
+        <br /><br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
+App.js:
+import React from "react";
+import RegistrationForm from "./components/RegistrationForm";
+
+export default function App() {
+  return (
+    <div>
+      <h1>React Form Example</h1>
+      <RegistrationForm />
+    </div>
+  );
+}
+Explanation:
+• The useState hook is used to manage form data dynamically.
+• handleChange() updates the state whenever the user types in the input field.
+• handleSubmit() prevents page reload using e.preventDefault() and displays an alert with entered values.
+• The form inputs are 'controlled components', meaning their values are directly bound to the React state.
+• The component is imported into App.js and rendered as a child component.
+Expected Output:
+When the user enters their name and email in the form and clicks Submit, an alert box will appear displaying the entered details.
+
+Example:
+Name: Praneel Kumar
+Email: praneel@example.com
+Result:
+The form was successfully created using React. The input values were managed using the useState hook, and form submission was handled dynamically without reloading the page.
+
+
+
+
+Experiment (d): Use Redux to Manage State in a Counter App
+Redux provides a centralized way to manage and update state in React applications. It is particularly useful when multiple components share or depend on the same state. In this experiment, students will create a simple counter application using Redux Toolkit and React Redux to understand the principles of state management.
+Aim:
+To use Redux Toolkit and React Redux to implement a counter app.
+Tools Required:
+• Node.js (LTS version) – https://nodejs.org/
+• Visual Studio Code – https://code.visualstudio.com/
+• Web browser (Google Chrome recommended)
+Procedure:
+1. Install Redux Toolkit and React Redux using the command:
+   npm install @reduxjs/toolkit react-redux
+2. Inside the src directory, create a new folder named store to organize Redux files.
+3. Create src/store/counterSlice.js to define reducers for increment, decrement, and reset actions using createSlice().
+4. Create src/store/store.js and configure the Redux store with the counter reducer.
+5. In src/index.js, wrap the App component with the Provider component from react-redux and pass the store to it.
+6. Create src/components/Counter.js to connect React components with Redux using useSelector and useDispatch hooks.
+7. Render the Counter component in App.js and verify that all buttons work correctly.
+Source Code:
+counterSlice.js:
+import { createSlice } from "@reduxjs/toolkit";
+
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1; },
+    decrement: (state) => { state.value -= 1; },
+    reset: (state) => { state.value = 0; }
+  }
+});
+
+export const { increment, decrement, reset } = counterSlice.actions;
+export default counterSlice.reducer;
+store.js:
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counterSlice";
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+});
+index.js:
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+Counter.js:
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement, reset } from "../store/counterSlice";
+
+export default function Counter() {
+  const value = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div style={{ padding: 20 }}>
+      <h2>Redux Counter Example</h2>
+      <h3>Counter Value: {value}</h3>
+      <button onClick={() => dispatch(increment())}>+1</button>{" "}
+      <button onClick={() => dispatch(decrement())}>-1</button>{" "}
+      <button onClick={() => dispatch(reset())}>Reset</button>
+    </div>
+  );
+}
+App.js:
+import React from "react";
+import Counter from "./components/Counter";
+
+export default function App() {
+  return (
+    <div>
+      <h1>React + Redux Counter Application</h1>
+      <Counter />
+    </div>
+  );
+}
+Explanation:
+• Redux Toolkit's createSlice() simplifies the process of creating reducers and actions in one place.
+• The configureStore() method creates a centralized store that holds the entire app’s state.
+• The Provider component from react-redux makes the store available to all React components.
+• useSelector() reads data from the Redux store.
+• useDispatch() sends actions to update the store.
+• The counter's value is globally managed, allowing consistent updates across components.
+Expected Output:
+The counter app displays a number (initially 0) along with three buttons: +1, -1, and Reset. Clicking '+1' increments the count, '-1' decrements it, and 'Reset' sets the count back to 0. The state is managed centrally in the Redux store and updates reflect immediately on the UI.
+Result:
+The counter application was successfully implemented using Redux Toolkit and React Redux. The experiment demonstrates how to manage global application state, dispatch actions, and subscribe to store updates in React.
+
+
+
+Experiment (e): Fetch and Render Data from a Public API using Axios
+Axios is a popular JavaScript library used to make HTTP requests from browsers and Node.js. In React, Axios helps fetch data from APIs and update components dynamically. In this experiment, students will use Axios to fetch posts from a public API (JSONPlaceholder) and display them in a React application.
+Aim:
+To fetch data from an external API and render it dynamically using React and Axios.
+Tools Required:
+• Node.js (LTS version) – https://nodejs.org/
+• Visual Studio Code – https://code.visualstudio.com/
+• Web browser (Google Chrome recommended)
+Procedure:
+1. Install Axios in your React project using the command:
+   npm install axios
+2. Create a new component file named src/components/PostsList.js
+3. Import useState and useEffect from React to manage state and side effects.
+4. Use the useEffect hook to make a GET request using Axios to fetch posts from JSONPlaceholder API.
+5. Store the response data in the posts state using the useState hook.
+6. Render the list of post titles dynamically using the map() function.
+7. Import and render the PostsList component inside App.js.
+8. Run the project using npm start and verify that posts are displayed correctly.
+Source Code:
+PostsList.js:
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+export default function PostsList() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5")
+      .then(res => setPosts(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  return (
+    <div>
+      <h3>Posts</h3>
+      <ul>
+        {posts.map(p => <li key={p.id}><b>{p.title}</b></li>)}
+      </ul>
+    </div>
+  );
+}
+App.js:
+import React from "react";
+import PostsList from "./components/PostsList";
+
+export default function App() {
+  return (
+    <div>
+      <h1>React Axios Data Fetch Example</h1>
+      <PostsList />
+    </div>
+  );
+}
+Explanation:
+• Axios is used to perform HTTP requests and handle responses asynchronously.
+• useState() manages the posts array in local component state.
+• useEffect() ensures the API call runs once when the component mounts.
+• axios.get() sends a GET request to fetch data from the JSONPlaceholder API.
+• The map() function dynamically generates list items for each post.
+Expected Output:
+The webpage displays a list of 5 post titles fetched from the JSONPlaceholder API. Each title is rendered dynamically using React. The data appears instantly after the page loads without manual refreshing.
+Result:
+The application was successfully created using React and Axios. Students were able to fetch and render API data dynamically, demonstrating the integration of client-server communication using Axios.
+
